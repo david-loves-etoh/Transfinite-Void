@@ -1,33 +1,32 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "transfinite_void",
 	"version": "${version}",
-	"name": "Example Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Transfinite Void",
+	"description": "A Googological MC Mod.",
 	"authors": [
-		"Me!"
+		"Endless_e308",
+		"用户1986Ω",
+		"hytawaless",
+		"DeepSeek Harness and other PjOM members"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/david-loves-etoh/Transfinite-Void"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/transfinite_void/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			"io.transfinite_void.TransfiniteVoid"
 		],
 		"client": [
-			"com.example.client.ExampleModClient"
+			"io.transfinite_void.client.TransfiniteVoidClient"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
-		{
-			"config": "modid.client.mixins.json",
-			"environment": "client"
-		}
+		"transfinite_void.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.19.5",

@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "code_trigger": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "transfinite_void:textures/block/titanium_ore.png",
+    "description": {
+      "translate": "advancements.transfinite_void.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "transfinite_void:titanium_plate"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.transfinite_void.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "code_trigger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

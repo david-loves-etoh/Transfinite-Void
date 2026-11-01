@@ -9,13 +9,30 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	if (project.use_mirror.toBoolean()) {
+        removeIf {
+            it instanceof MavenArtifactRepository &&
+                (it.url.toString() == "https://repo.maven.apache.org/maven2/")
+        }
+        maven {
+            name 'Ali Mirror Maven'
+            url "https://maven.aliyun.com/nexus/content/groups/public"
+            allowInsecureProtocol = true
+        }
+        maven {
+            name 'MC Mirror Maven'
+            url "https://${mirror_maven_url}"
+            allowInsecureProtocol = true
+        }
+        //more mirror maven add here,in order to search plugins
+    }
 }
 
 loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"modid" {
+		"transfinite_void" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}

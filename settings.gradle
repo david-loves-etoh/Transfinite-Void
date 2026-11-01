@@ -4,10 +4,27 @@ pluginManagement {
 			name = 'Fabric'
 			url = 'https://maven.fabricmc.net/'
 		}
+		if (use_mirror.toBoolean()) {
+            removeIf {
+                it instanceof MavenArtifactRepository &&
+                    (it.url.toString() == "https://repo.maven.apache.org/maven2/")
+            }
+            maven {
+                name 'Ali Mirror Maven'
+                url "https://maven.aliyun.com/nexus/content/groups/public"
+                allowInsecureProtocol = true
+            }
+            maven {
+                name 'MC Mirror Maven'
+                url "https://${mirror_maven_url}"
+                allowInsecureProtocol = true
+            }
+            //more mirror maven add here,in order to search plugins
+        }
 		mavenCentral()
 		gradlePluginPortal()
 	}
 }
 
 // Should match your modid
-rootProject.name = 'modid'
+rootProject.name = 'transfinite_void'

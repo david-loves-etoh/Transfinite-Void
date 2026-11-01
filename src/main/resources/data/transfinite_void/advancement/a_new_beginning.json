@@ -1,0 +1,29 @@
+{
+  "parent": "transfinite_void:root",
+  "criteria": {
+    "wear_full_titanium_set": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.transfinite_void.a_new_beginning.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "transfinite_void:titanium_chestplate"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.transfinite_void.a_new_beginning.title"
+    }
+  },
+  "requirements": [
+    [
+      "wear_full_titanium_set"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
