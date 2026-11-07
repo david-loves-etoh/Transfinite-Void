@@ -20,6 +20,8 @@ public final class ModBlocks {
 	 * creative tab. The loot table already exists, so adding a configured feature later is all that is needed.
 	 */
 	public static Block TITANIUM_ORE;
+	/** 钛块 / Block of Titanium — mining level 4, like the ore. */
+	public static Block TITANIUM_BLOCK;
 
 	private ModBlocks() {
 	}
@@ -36,5 +38,15 @@ public final class ModBlocks {
 								.requiresCorrectToolForDrops()
 								.strength(4.5F, 4.5F)
 								.sound(SoundType.STONE)));
+
+		TITANIUM_BLOCK = Registry.register(
+				BuiltInRegistries.BLOCK,
+				TransfiniteVoid.id("titanium_block"),
+				new Block(BlockBehaviour.Properties.of()
+						.mapColor(MapColor.METAL)
+						.instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+						.requiresCorrectToolForDrops()
+						.strength(5.0F, 6.0F)
+						.sound(SoundType.METAL)));
 	}
 }

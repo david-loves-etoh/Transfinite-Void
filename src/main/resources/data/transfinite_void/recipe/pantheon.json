@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "minecraft:logs"
+    },
+    "B": {
+      "item": "minecraft:cobblestone"
+    },
+    "C": {
+      "item": "minecraft:iron_block"
+    },
+    "D": {
+      "item": "minecraft:gold_block"
+    },
+    "E": {
+      "item": "minecraft:diamond_block"
+    },
+    "F": {
+      "item": "minecraft:emerald_block"
+    },
+    "G": {
+      "item": "minecraft:netherite_block"
+    },
+    "H": {
+      "item": "minecraft:end_stone"
+    },
+    "I": {
+      "item": "minecraft:dragon_egg"
+    }
+  },
+  "pattern": [
+    "HAB",
+    "GIC",
+    "FED"
+  ],
+  "result": {
+    "count": 1,
+    "id": "transfinite_void:pantheon"
+  }
+}

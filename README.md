@@ -7,7 +7,8 @@ A Fabric mod for Minecraft 1.21.1 (mojmap, Java 21).
 | Content | Notes |
 |---|---|
 | 钛矿 `titanium_ore` | Mining level 4 (needs a netherite pickaxe, it is in `#minecraft:incorrect_for_diamond_tool`). Drops titanium directly, 3-7 XP. **No world generation yet** — creative tab only, so the ore is currently unobtainable in survival. The block, loot table and tags are already in place; add a configured/placed feature plus a biome modifier when you want it to generate. |
-| 钛 `titanium` | Base material. |
+| 钛 `titanium` | Base material (the ingot form). |
+| 钛块 `titanium_block` | Mining level 4 like the ore. 9 titanium <-> 1 block (crafting table, both directions). |
 | 钛板 `titanium_plate` | 2 titanium -> 1 plate. Crafting material of all titanium gear. |
 | 钛棍 `titanium_stick` | 2 plates -> 2 rods. Handle of the pickaxe / axe / sword. |
 | 钛镐 `titanium_pickaxe` | Mining level 5 (`#transfinite_void:incorrect_for_titanium_tool`, empty tag), 6767 durability, 18.0 mining speed (2x netherite's 9.0), built-in Fortune III. |
@@ -17,8 +18,9 @@ A Fabric mod for Minecraft 1.21.1 (mojmap, Java 21).
 | 钛胸甲 `titanium_chestplate` | +15 armour, +3 toughness, 214719 durability, Regeneration II + Resistance II + Saturation I while worn. |
 | 钛护腿 `titanium_leggings` | +13 armour, +2.5 toughness, 188888 durability, Ascension I + Jump Boost II while worn. |
 | 钛靴子 `titanium_boots` | +11 armour, +1.5 toughness, 99999 durability (not specified in the design), Speed II while worn. |
-| 飞升 I-X 药水 | Registered as vanilla potions (`transfinite_void:ascension_1` … `_10`, 3 minutes each). Vanilla's *Food & Drinks* creative tab generates one `minecraft:potion` entry per registered potion, so they appear there and only there. |
-| 新的开始 / A New Beginning | Granted when a player wears the full titanium set. |
+| 飞升 I-X 药水 | Registered as vanilla potions (`transfinite_void:ascension_1` … `_10`, 3 minutes each). Vanilla's *Food & Drinks* creative tab generates one `minecraft:potion`, `minecraft:splash_potion`, `minecraft:lingering_potion` entry and one tipped arrow per registered potion, so they appear there and only there. Item names come from the `item.minecraft.{,splash_,lingering_}potion.effect.ascension_N` / `item.minecraft.tipped_arrow.effect.ascension_N` keys. |
+| 万神殿 `pantheon` | Right-click an altar block to summon its master with Ascension: iron block → iron golem (X, 10:00), wither skeleton skull → wither (V, 10:00), dragon head → ender dragon (VI, 6:06). Not consumed by default (`PantheonItem.CONSUME_ON_USE`). |
+| 新的开始 / A New Beginning | Granted once every titanium piece is in the player's inventory (armour slots included). |
 
 ## Effects
 
@@ -35,4 +37,4 @@ A Fabric mod for Minecraft 1.21.1 (mojmap, Java 21).
 * Armour effects are applied from a server tick, so they also work when armour is equipped by dispensers / `/item`.
 * Textures are titanium-palette recolours of the vanilla iron item sprites (same geometry, wood handles kept) and of
   the vanilla iron armour layers; the ore reuses vanilla iron ore's pigment mask on the vanilla stone base. The plate
-  is hand drawn in the same seven-shade ramp. Replace them freely.
+  is hand drawn in the same seven-shade ramp.

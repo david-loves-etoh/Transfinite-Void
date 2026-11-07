@@ -34,6 +34,7 @@ public final class ModCreativeTab {
 
 		ItemGroupEvents.modifyEntriesEvent(TAB_KEY).register(entries -> {
 			entries.accept(ModItems.TITANIUM_ORE);
+			entries.accept(ModItems.TITANIUM_BLOCK);
 			entries.accept(ModItems.TITANIUM);
 			entries.accept(ModItems.TITANIUM_PLATE);
 			entries.accept(ModItems.TITANIUM_STICK);
@@ -46,6 +47,8 @@ public final class ModCreativeTab {
 			entries.accept(ModItems.TITANIUM_CHESTPLATE);
 			entries.accept(ModItems.TITANIUM_LEGGINGS);
 			entries.accept(ModItems.TITANIUM_BOOTS);
+
+			entries.accept(ModItems.PANTHEON);
 
 			// 飞升 I-X 药水 deliberately stay out of this tab: vanilla's "Food & Drinks" tab generates one
 			// minecraft:potion entry per registered Potion, so they already show up there (and only there).

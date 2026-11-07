@@ -1,6 +1,7 @@
 package io.transfinite_void.registry;
 
 import io.transfinite_void.TransfiniteVoid;
+import io.transfinite_void.item.PantheonItem;
 import io.transfinite_void.item.TitaniumArmorItem;
 import io.transfinite_void.item.TitaniumAxeItem;
 import io.transfinite_void.item.TitaniumPickaxeItem;
@@ -10,6 +11,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SwordItem;
 
 import java.util.function.Function;
@@ -23,6 +25,10 @@ public final class ModItems {
 	public static Item TITANIUM_STICK;
 
 	public static Item TITANIUM_ORE;
+	public static Item TITANIUM_BLOCK;
+
+	/** 万神殿 / Pantheon — summons Ascension-buffed bosses. */
+	public static Item PANTHEON;
 
 	public static Item TITANIUM_PICKAXE;
 	public static Item TITANIUM_AXE;
@@ -44,6 +50,13 @@ public final class ModItems {
 		TITANIUM_ORE = register("titanium_ore",
 				properties -> new BlockItem(ModBlocks.TITANIUM_ORE, properties),
 				new Item.Properties());
+
+		TITANIUM_BLOCK = register("titanium_block",
+				properties -> new BlockItem(ModBlocks.TITANIUM_BLOCK, properties),
+				new Item.Properties());
+
+		PANTHEON = register("pantheon", PantheonItem::new,
+				new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
 
 		TITANIUM_PICKAXE = register("titanium_pickaxe",
 				properties -> new TitaniumPickaxeItem(ModTiers.TITANIUM_PICKAXE, properties),
