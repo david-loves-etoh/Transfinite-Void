@@ -9,7 +9,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 /**
@@ -48,9 +47,8 @@ public final class ModCreativeTab {
 			entries.accept(ModItems.TITANIUM_LEGGINGS);
 			entries.accept(ModItems.TITANIUM_BOOTS);
 
-			for (Item potion : ModItems.ASCENSION_POTIONS) {
-				entries.accept(potion);
-			}
+			// 飞升 I-X 药水 deliberately stay out of this tab: vanilla's "Food & Drinks" tab generates one
+			// minecraft:potion entry per registered Potion, so they already show up there (and only there).
 		});
 	}
 }

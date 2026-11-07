@@ -1,22 +1,17 @@
 package io.transfinite_void.registry;
 
 import io.transfinite_void.TransfiniteVoid;
-import io.transfinite_void.item.AscensionPotionItem;
 import io.transfinite_void.item.TitaniumArmorItem;
 import io.transfinite_void.item.TitaniumAxeItem;
 import io.transfinite_void.item.TitaniumPickaxeItem;
 import io.transfinite_void.item.TitaniumSwordItem;
 import net.minecraft.core.Registry;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.alchemy.PotionContents;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Function;
 
 public final class ModItems {
@@ -37,9 +32,6 @@ public final class ModItems {
 	public static Item TITANIUM_CHESTPLATE;
 	public static Item TITANIUM_LEGGINGS;
 	public static Item TITANIUM_BOOTS;
-
-	/** 飞升 I - X potions; index 0 is level I. */
-	public static final List<Item> ASCENSION_POTIONS = new ArrayList<>(ModPotions.ASCENSION_LEVELS);
 
 	private ModItems() {
 	}
@@ -79,16 +71,6 @@ public final class ModItems {
 		TITANIUM_BOOTS = register("titanium_boots",
 				TitaniumArmorItem.boots(ModArmorMaterials.TITANIUM),
 				new Item.Properties().durability(99999));
-
-		for (int level = 1; level <= ModPotions.ASCENSION_LEVELS; level++) {
-			final int potionLevel = level;
-			ASCENSION_POTIONS.add(register("ascension_potion_" + level,
-					properties -> new AscensionPotionItem(potionLevel, properties),
-					new Item.Properties()
-							.stacksTo(1)
-							.component(DataComponents.POTION_CONTENTS,
-									new PotionContents(ModPotions.ascension(potionLevel)))));
-		}
 	}
 
 	private static <T extends Item> T register(String name, Function<Item.Properties, T> factory,

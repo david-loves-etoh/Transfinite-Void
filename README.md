@@ -17,7 +17,7 @@ A Fabric mod for Minecraft 1.21.1 (mojmap, Java 21).
 | 钛胸甲 `titanium_chestplate` | +15 armour, +3 toughness, 214719 durability, Regeneration II + Resistance II + Saturation I while worn. |
 | 钛护腿 `titanium_leggings` | +13 armour, +2.5 toughness, 188888 durability, Ascension I + Jump Boost II while worn. |
 | 钛靴子 `titanium_boots` | +11 armour, +1.5 toughness, 99999 durability (not specified in the design), Speed II while worn. |
-| 飞升 I-X 药水 | Creative-only potions, 3 minutes each. |
+| 飞升 I-X 药水 | Registered as vanilla potions (`transfinite_void:ascension_1` … `_10`, 3 minutes each). Vanilla's *Food & Drinks* creative tab generates one `minecraft:potion` entry per registered potion, so they appear there and only there. |
 | 新的开始 / A New Beginning | Granted when a player wears the full titanium set. |
 
 ## Effects
@@ -33,5 +33,6 @@ A Fabric mod for Minecraft 1.21.1 (mojmap, Java 21).
   registry is available, which is why this happens at use time rather than at item registration.
 * Mending x2 is a small `EnchantmentHelper#modifyDurabilityToRepairFromXp` mixin.
 * Armour effects are applied from a server tick, so they also work when armour is equipped by dispensers / `/item`.
-* Textures are generated pixel-art placeholders (the armour layers reuse vanilla's alpha mask, repainted in the
-  titanium palette) — replace them freely.
+* Textures are titanium-palette recolours of the vanilla iron item sprites (same geometry, wood handles kept) and of
+  the vanilla iron armour layers; the ore reuses vanilla iron ore's pigment mask on the vanilla stone base. The plate
+  is hand drawn in the same seven-shade ramp. Replace them freely.
