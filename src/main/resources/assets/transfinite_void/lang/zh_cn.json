@@ -75,9 +75,6 @@
   "item.minecraft.lingering_potion.effect.ascension_10": "滞留型飞升 X 药水",
   "item.minecraft.tipped_arrow.effect.ascension_10": "飞升 X 之箭",
   "block.transfinite_void.titanium_block": "钛块",
-  "item.transfinite_void.pantheon": "万神殿",
-  "tooltip.transfinite_void.pantheon": "对着祭坛方块右键，召唤其主宰：",
-  "tooltip.transfinite_void.pantheon_iron_block": "铁块 —— 带飞升 X（10:00）的铁傀儡",
-  "tooltip.transfinite_void.pantheon_wither_skull": "凋灵骷髅头 —— 带飞升 V（10:00）的凋灵",
-  "tooltip.transfinite_void.pantheon_dragon_head": "龙首 —— 带飞升 VI（6:06）的末影龙"
+  "item.transfinite_void.pantheon": "「万神殿」",
+  "tooltip.transfinite_void.pantheon": "对着祭坛方块右键，召唤其主宰"
 }

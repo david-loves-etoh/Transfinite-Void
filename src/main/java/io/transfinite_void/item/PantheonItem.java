@@ -77,12 +77,6 @@ public class PantheonItem extends Item {
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
 		tooltip.add(Component.translatable("tooltip.transfinite_void.pantheon").withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.pantheon_iron_block")
-				.withStyle(ChatFormatting.DARK_GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.pantheon_wither_skull")
-				.withStyle(ChatFormatting.DARK_GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.pantheon_dragon_head")
-				.withStyle(ChatFormatting.DARK_GRAY));
 		super.appendHoverText(stack, context, tooltip, flag);
 	}
 

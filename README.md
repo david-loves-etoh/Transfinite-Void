@@ -35,6 +35,9 @@ A Fabric mod for Minecraft 1.21.1 (mojmap, Java 21).
   registry is available, which is why this happens at use time rather than at item registration.
 * Mending x2 is a small `EnchantmentHelper#modifyDurabilityToRepairFromXp` mixin.
 * Armour effects are applied from a server tick, so they also work when armour is equipped by dispensers / `/item`.
+* Mod icon: `assets/transfinite_void/icon.png` (256x256) is composed from the project banner — the 915x143 banner's
+  single-line wordmark plus tagline are placed on a rendered starfield (nebula clouds, milky-way band, glare stars),
+  because the icon slot in Mod Menu is square.
 * Textures are titanium-palette recolours of the vanilla iron item sprites (same geometry, wood handles kept) and of
   the vanilla iron armour layers; the ore reuses vanilla iron ore's pigment mask on the vanilla stone base. The plate
   is hand drawn in the same seven-shade ramp.
