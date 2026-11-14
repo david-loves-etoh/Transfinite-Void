@@ -15,6 +15,8 @@ import net.minecraft.world.level.block.Block;
 public final class ModTags {
 	public static final TagKey<Block> INCORRECT_FOR_TITANIUM_TOOL =
 			TagKey.create(Registries.BLOCK, TransfiniteVoid.id("incorrect_for_titanium_tool"));
+	public static final TagKey<Block> INCORRECT_FOR_CYANISIDIAN_TOOL =
+			TagKey.create(Registries.BLOCK, TransfiniteVoid.id("incorrect_for_cyanisidian_tool"));
 
 	private ModTags() {
 	}

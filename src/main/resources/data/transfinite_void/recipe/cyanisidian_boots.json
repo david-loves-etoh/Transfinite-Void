@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "transfinite_void:cyanisidian_plate"
+    }
+  },
+  "pattern": [
+    "   ",
+    "B B",
+    "B B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "transfinite_void:cyanisidian_boots"
+  }
+}

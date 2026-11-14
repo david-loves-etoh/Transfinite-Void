@@ -23,6 +23,11 @@ public final class ModBlocks {
 	/** 钛块 / Block of Titanium — mining level 4, like the ore. */
 	public static Block TITANIUM_BLOCK;
 
+	/** 蓝曜石矿 / Cyanisidian Ore — mining level 5, hardness = 3x reinforced deepslate (55). */
+	public static Block CYANISIDIAN_ORE;
+	/** 蓝曜块 / Block of Cyanisidian. */
+	public static Block CYANISIDIAN_BLOCK;
+
 	private ModBlocks() {
 	}
 
@@ -48,5 +53,29 @@ public final class ModBlocks {
 						.requiresCorrectToolForDrops()
 						.strength(5.0F, 6.0F)
 						.sound(SoundType.METAL)));
+
+		// Reinforced deepslate is strength(55.0F, 1200.0F); the ore is three times as hard to break.
+		// Mining level 5: it is listed in #minecraft:needs_diamond_tool, #incorrect_for_diamond_tool and
+		// #incorrect_for_netherite_tool, so only the titanium (5) and cyanisidian (6) tiers can take drops.
+		CYANISIDIAN_ORE = Registry.register(
+				BuiltInRegistries.BLOCK,
+				TransfiniteVoid.id("cyanisidian_ore"),
+				new DropExperienceBlock(UniformInt.of(5, 12),
+						BlockBehaviour.Properties.of()
+								.mapColor(MapColor.COLOR_CYAN)
+								.instrument(NoteBlockInstrument.BASEDRUM)
+								.requiresCorrectToolForDrops()
+								.strength(165.0F, 3600.0F)
+								.sound(SoundType.STONE)));
+
+		CYANISIDIAN_BLOCK = Registry.register(
+				BuiltInRegistries.BLOCK,
+				TransfiniteVoid.id("cyanisidian_block"),
+				new Block(BlockBehaviour.Properties.of()
+						.mapColor(MapColor.COLOR_CYAN)
+						.instrument(NoteBlockInstrument.BASEDRUM)
+						.requiresCorrectToolForDrops()
+						.strength(50.0F, 1200.0F)
+						.sound(SoundType.STONE)));
 	}
 }

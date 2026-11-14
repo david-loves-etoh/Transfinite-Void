@@ -16,6 +16,8 @@ import java.util.Map;
 public final class ModArmorMaterials {
 	/** Armour texture layers: assets/transfinite_void/textures/models/armor/titanium_layer_1|2.png */
 	public static Holder<ArmorMaterial> TITANIUM;
+	/** 蓝曜甲: layers at assets/transfinite_void/textures/models/armor/cyanisidian_layer_1|2.png */
+	public static Holder<ArmorMaterial> CYANISIDIAN;
 
 	private ModArmorMaterials() {
 	}
@@ -39,5 +41,24 @@ public final class ModArmorMaterials {
 
 		TITANIUM = Registry.registerForHolder(
 				BuiltInRegistries.ARMOR_MATERIAL, TransfiniteVoid.id("titanium"), material);
+
+		EnumMap<ArmorItem.Type, Integer> cyanisidianDefense = new EnumMap<>(ArmorItem.Type.class);
+		cyanisidianDefense.put(ArmorItem.Type.HELMET, 15);
+		cyanisidianDefense.put(ArmorItem.Type.CHESTPLATE, 20);
+		cyanisidianDefense.put(ArmorItem.Type.LEGGINGS, 17);
+		cyanisidianDefense.put(ArmorItem.Type.BOOTS, 10);
+		cyanisidianDefense.put(ArmorItem.Type.BODY, 20);
+
+		ArmorMaterial cyanisidian = new ArmorMaterial(
+				Map.copyOf(cyanisidianDefense),
+				15,
+				SoundEvents.ARMOR_EQUIP_NETHERITE,
+				() -> Ingredient.of(ModItems.CYANISIDIAN_PLATE),
+				List.of(new ArmorMaterial.Layer(TransfiniteVoid.id("cyanisidian"))),
+				3.0F,
+				0.0F);
+
+		CYANISIDIAN = Registry.registerForHolder(
+				BuiltInRegistries.ARMOR_MATERIAL, TransfiniteVoid.id("cyanisidian"), cyanisidian);
 	}
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "transfinite_void:cyanisidian"
+    },
+    {
+      "item": "transfinite_void:cyanisidian_plate"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "transfinite_void:cyanisidian_rod"
+  }
+}

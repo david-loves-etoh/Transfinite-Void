@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "C": {
+      "item": "transfinite_void:cyanisidian"
+    }
+  },
+  "pattern": [
+    "RCR",
+    "CCC",
+    "RCR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "transfinite_void:cyanisidian_core"
+  }
+}

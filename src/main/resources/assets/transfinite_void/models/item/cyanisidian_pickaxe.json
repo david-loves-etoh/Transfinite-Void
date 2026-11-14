@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "transfinite_void:item/cyanisidian_pickaxe"
+  }
+}

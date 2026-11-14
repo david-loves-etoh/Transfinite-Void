@@ -1,6 +1,8 @@
 {
   "values": [
     "transfinite_void:titanium_ore",
-    "transfinite_void:titanium_block"
+    "transfinite_void:titanium_block",
+    "transfinite_void:cyanisidian_ore",
+    "transfinite_void:cyanisidian_block"
   ]
 }

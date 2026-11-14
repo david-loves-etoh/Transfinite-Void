@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "transfinite_void:item/cyanisidian_leggings"
+  }
+}

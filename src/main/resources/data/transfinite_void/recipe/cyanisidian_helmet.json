@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "transfinite_void:cyanisidian_plate"
+    },
+    "C": {
+      "item": "transfinite_void:cyanisidian_core"
+    }
+  },
+  "pattern": [
+    "BCB",
+    "B B",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "transfinite_void:cyanisidian_helmet"
+  }
+}

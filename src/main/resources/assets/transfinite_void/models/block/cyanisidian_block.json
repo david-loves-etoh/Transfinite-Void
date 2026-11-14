@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "transfinite_void:block/cyanisidian_block"
+  }
+}
