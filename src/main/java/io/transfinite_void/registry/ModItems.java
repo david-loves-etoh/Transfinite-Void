@@ -8,6 +8,7 @@ import io.transfinite_void.item.CyanisidianSwordItem;
 import io.transfinite_void.item.PantheonItem;
 import io.transfinite_void.item.StardustArmorItem;
 import io.transfinite_void.item.StardustAxeItem;
+import io.transfinite_void.item.StardustFistSwordItem;
 import io.transfinite_void.item.StardustPickaxeItem;
 import io.transfinite_void.item.StardustSwordItem;
 import io.transfinite_void.item.TitaniumArmorItem;
@@ -75,6 +76,8 @@ public final class ModItems {
 	public static Item STARDUST_PICKAXE;
 	public static Item STARDUST_AXE;
 	public static Item STARDUST_SWORD;
+	/** 星陨拳剑 / Stardust Fist Sword — right-click area attack. */
+	public static Item STARDUST_FIST_SWORD;
 
 	public static Item STARDUST_HELMET;
 	public static Item STARDUST_CHESTPLATE;
@@ -225,6 +228,14 @@ public final class ModItems {
 				properties -> new StardustSwordItem(ModTiers.STARDUST_SWORD, properties),
 				new Item.Properties().attributes(
 						SwordItem.createAttributes(ModTiers.STARDUST_SWORD, 29, 0.8F)));
+
+		// 无法破坏: the unbreakable component makes the durability meaningless; stacksTo(1) keeps it from stacking.
+		STARDUST_FIST_SWORD = register("stardust_fist_sword",
+				properties -> new StardustFistSwordItem(ModTiers.STARDUST_SWORD, properties),
+				new Item.Properties()
+						.stacksTo(1)
+						.component(DataComponents.UNBREAKABLE, new Unbreakable(false))
+						.attributes(SwordItem.createAttributes(ModTiers.STARDUST_SWORD, 41, 0.8F)));
 
 		STARDUST_HELMET = register("stardust_helmet",
 				StardustArmorItem.helmet(ModArmorMaterials.STARDUST), unbreakableArmor());

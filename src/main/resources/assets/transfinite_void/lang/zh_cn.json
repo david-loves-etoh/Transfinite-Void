@@ -163,5 +163,7 @@
   "tooltip.transfinite_void.true_damage": "造成 %s 点真实伤害（无视护甲、效果与无敌帧）",
   "tooltip.transfinite_void.combo_chance": "%s%% 概率触发连击，追加一次双倍伤害",
   "tooltip.transfinite_void.unbreakable": "无法破坏",
-  "tooltip.transfinite_void.magic_defense": "+%s 魔法／真实伤害减免"
+  "tooltip.transfinite_void.magic_defense": "+%s 魔法／真实伤害减免",
+  "item.transfinite_void.stardust_fist_sword": "星陨拳剑",
+  "tooltip.transfinite_void.aoe_hits": "右键：对 %3$s 格立方体内的所有敌对生物必定造成 %1$s 段 %2$s 点伤害"
 }

@@ -51,8 +51,9 @@ A Fabric mod for Minecraft 1.21.1 (mojmap, Java 21).
 | 星陨镐 `stardust_pickaxe` | Mining level 7, 99999 durability, 54.0 mining speed (2x the cyanisidian pickaxe). |
 | 星陨斧 `stardust_axe` | Mining level 7, 199999 durability, 70.0 mining speed (2x the cyanisidian axe's effective 35). |
 | 星陨剑 `stardust_sword` | 30 attack damage, 299999 durability, attack speed 4.8/s (a third of a netherite sword's cooldown), +10 true damage per hit, 10% chance to chain a double-damage follow-up hit (each follow-up can chain again). |
+| 星陨拳剑 `stardust_fist_sword` | Unbreakable. Shapeless: stardust axe + pickaxe + sword + 3 stardust ingots. 42 attack damage, attack speed 4.8/s. Right-click: three guaranteed 20-damage hits on every hostile mob (`Enemy`) inside a 6x6x6 cube around the player, each hit with the same recursive 10% double-damage combo. No cooldown. Sprite is a katar silhouette (ProjectE red-matter katar as shape reference) painted in the stardust blue/gold palette. |
 | 星陨头盔 `stardust_helmet` | Unbreakable. +25 armour, +5 toughness, +5 max health, +3 magic/true defence. Worn: Water Breathing III, Haste III. |
-| 星陨胸甲 `stardust_chestplate` | Unbreakable. +50 armour, +9 toughness, +10 max health, +6 magic/true defence. Worn: Hero of the Village III, Ascension III, Health Boost III, Regeneration III. |
+| 星陨胸甲 `stardust_chestplate` | Unbreakable. +50 armour, +9 toughness, +10 max health, +6 magic/true defence. Worn: Hero of the Village III, Ascension V, Health Boost III, Regeneration III. |
 | 星陨护腿 `stardust_leggings` | Unbreakable. +30 armour, +6 toughness, +8 max health, +4 magic/true defence. Worn: Jump Boost IV, Slow Falling. |
 | 星陨靴子 `stardust_boots` | Unbreakable. +20 armour, +4 toughness, +15 max health, +1 magic/true defence. Worn: Speed V. |
 

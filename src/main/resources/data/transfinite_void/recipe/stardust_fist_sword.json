@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "transfinite_void:stardust_axe"
+    },
+    {
+      "item": "transfinite_void:stardust_pickaxe"
+    },
+    {
+      "item": "transfinite_void:stardust_sword"
+    },
+    {
+      "item": "transfinite_void:stardust_ingot"
+    },
+    {
+      "item": "transfinite_void:stardust_ingot"
+    },
+    {
+      "item": "transfinite_void:stardust_ingot"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "transfinite_void:stardust_fist_sword"
+  }
+}

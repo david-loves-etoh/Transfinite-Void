@@ -163,5 +163,7 @@
   "tooltip.transfinite_void.true_damage": "Deals %s true damage (ignores armour, effects and invulnerability)",
   "tooltip.transfinite_void.combo_chance": "%s%% chance to chain an extra double-damage hit",
   "tooltip.transfinite_void.unbreakable": "Unbreakable",
-  "tooltip.transfinite_void.magic_defense": "+%s magic / true damage reduction"
+  "tooltip.transfinite_void.magic_defense": "+%s magic / true damage reduction",
+  "item.transfinite_void.stardust_fist_sword": "Stardust Fist Sword",
+  "tooltip.transfinite_void.aoe_hits": "Right-click: %s guaranteed hits of %s damage to every hostile mob in a %s-block cube"
 }

@@ -15,7 +15,7 @@ import net.minecraft.world.entity.EquipmentSlot;
  * Continuous buffs of the stardust armour:
  * <ul>
  *     <li>头盔: 水下呼吸 III + 急迫 III</li>
- *     <li>胸甲: 村庄英雄 III + 飞升 III + 生命提升 III + 生命恢复 III</li>
+ *     <li>胸甲: 村庄英雄 III + 飞升 V + 生命提升 III + 生命恢复 III</li>
  *     <li>护腿: 跳跃提升 IV + 缓降 I</li>
  *     <li>靴子: 速度 V</li>
  * </ul>
@@ -45,7 +45,7 @@ public final class StardustGearHandler {
 
 		if (player.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.STARDUST_CHESTPLATE)) {
 			refresh(player, MobEffects.HERO_OF_THE_VILLAGE, 2);
-			refresh(player, ModEffects.ASCENSION, 2);
+			refresh(player, ModEffects.ASCENSION, 4);
 			refresh(player, MobEffects.HEALTH_BOOST, 2);
 			refresh(player, MobEffects.REGENERATION, 2);
 		}

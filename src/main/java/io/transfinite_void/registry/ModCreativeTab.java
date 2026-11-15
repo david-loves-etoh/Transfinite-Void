@@ -74,6 +74,7 @@ public final class ModCreativeTab {
 			entries.accept(ModItems.STARDUST_PICKAXE);
 			entries.accept(ModItems.STARDUST_AXE);
 			entries.accept(ModItems.STARDUST_SWORD);
+			entries.accept(ModItems.STARDUST_FIST_SWORD);
 
 			entries.accept(ModItems.STARDUST_HELMET);
 			entries.accept(ModItems.STARDUST_CHESTPLATE);
