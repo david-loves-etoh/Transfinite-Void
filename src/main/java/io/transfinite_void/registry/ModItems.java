@@ -6,11 +6,16 @@ import io.transfinite_void.item.CyanisidianAxeItem;
 import io.transfinite_void.item.CyanisidianPickaxeItem;
 import io.transfinite_void.item.CyanisidianSwordItem;
 import io.transfinite_void.item.PantheonItem;
+import io.transfinite_void.item.StardustArmorItem;
+import io.transfinite_void.item.StardustAxeItem;
+import io.transfinite_void.item.StardustPickaxeItem;
+import io.transfinite_void.item.StardustSwordItem;
 import io.transfinite_void.item.TitaniumArmorItem;
 import io.transfinite_void.item.TitaniumAxeItem;
 import io.transfinite_void.item.TitaniumPickaxeItem;
 import io.transfinite_void.item.TitaniumSwordItem;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -20,6 +25,7 @@ import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.component.Unbreakable;
 
 import java.util.function.Function;
 
@@ -57,6 +63,23 @@ public final class ModItems {
 	public static Item CYANISIDIAN_CHESTPLATE;
 	public static Item CYANISIDIAN_LEGGINGS;
 	public static Item CYANISIDIAN_BOOTS;
+
+	/** 星陨粒 / Stardust Dust — 9 make an ingot. */
+	public static Item STARDUST_DUST;
+	/** 星陨锭 / Stardust Ingot — 9 make a block. */
+	public static Item STARDUST_INGOT;
+
+	public static Item STARDUST_ORE;
+	public static Item STARDUST_BLOCK;
+
+	public static Item STARDUST_PICKAXE;
+	public static Item STARDUST_AXE;
+	public static Item STARDUST_SWORD;
+
+	public static Item STARDUST_HELMET;
+	public static Item STARDUST_CHESTPLATE;
+	public static Item STARDUST_LEGGINGS;
+	public static Item STARDUST_BOOTS;
 
 	public static Item TITANIUM_PICKAXE;
 	public static Item TITANIUM_AXE;
@@ -172,6 +195,55 @@ public final class ModItems {
 		CYANISIDIAN_BOOTS = register("cyanisidian_boots",
 				CyanisidianArmorItem.boots(ModArmorMaterials.CYANISIDIAN),
 				new Item.Properties().durability(1000000));
+
+		registerStardust();
+	}
+
+	private static void registerStardust() {
+		STARDUST_DUST = register("stardust_dust", Item::new, new Item.Properties().rarity(Rarity.RARE));
+		STARDUST_INGOT = register("stardust_ingot", Item::new, new Item.Properties().rarity(Rarity.EPIC));
+
+		STARDUST_ORE = register("stardust_ore",
+				properties -> new BlockItem(ModBlocks.STARDUST_ORE, properties),
+				new Item.Properties());
+		STARDUST_BLOCK = register("stardust_block",
+				properties -> new BlockItem(ModBlocks.STARDUST_BLOCK, properties),
+				new Item.Properties());
+
+		STARDUST_PICKAXE = register("stardust_pickaxe",
+				properties -> new StardustPickaxeItem(ModTiers.STARDUST_PICKAXE, properties),
+				new Item.Properties().attributes(
+						DiggerItem.createAttributes(ModTiers.STARDUST_PICKAXE, 4.0F, -2.8F)));
+
+		STARDUST_AXE = register("stardust_axe",
+				properties -> new StardustAxeItem(ModTiers.STARDUST_AXE, properties),
+				new Item.Properties().attributes(
+						DiggerItem.createAttributes(ModTiers.STARDUST_AXE, 6.0F, -3.0F)));
+
+		// +0.8 attack speed modifier -> 4.8 attacks per second, i.e. a third of a netherite sword's cooldown (4.0 - 2.4).
+		STARDUST_SWORD = register("stardust_sword",
+				properties -> new StardustSwordItem(ModTiers.STARDUST_SWORD, properties),
+				new Item.Properties().attributes(
+						SwordItem.createAttributes(ModTiers.STARDUST_SWORD, 29, 0.8F)));
+
+		STARDUST_HELMET = register("stardust_helmet",
+				StardustArmorItem.helmet(ModArmorMaterials.STARDUST), unbreakableArmor());
+		STARDUST_CHESTPLATE = register("stardust_chestplate",
+				StardustArmorItem.chestplate(ModArmorMaterials.STARDUST), unbreakableArmor());
+		STARDUST_LEGGINGS = register("stardust_leggings",
+				StardustArmorItem.leggings(ModArmorMaterials.STARDUST), unbreakableArmor());
+		STARDUST_BOOTS = register("stardust_boots",
+				StardustArmorItem.boots(ModArmorMaterials.STARDUST), unbreakableArmor());
+	}
+
+	/**
+	 * Unbreakable, non-stacking armour. Without a MAX_DAMAGE component an item would stack to 64, so stacksTo(1) is
+	 * set explicitly and the durability is handled purely by the UNBREAKABLE component.
+	 */
+	private static Item.Properties unbreakableArmor() {
+		return new Item.Properties()
+				.stacksTo(1)
+				.component(DataComponents.UNBREAKABLE, new Unbreakable(false));
 	}
 
 	private static <T extends Item> T register(String name, Function<Item.Properties, T> factory,

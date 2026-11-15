@@ -66,6 +66,20 @@ public final class ModCreativeTab {
 			entries.accept(ModItems.CYANISIDIAN_LEGGINGS);
 			entries.accept(ModItems.CYANISIDIAN_BOOTS);
 
+			entries.accept(ModItems.STARDUST_ORE);
+			entries.accept(ModItems.STARDUST_BLOCK);
+			entries.accept(ModItems.STARDUST_DUST);
+			entries.accept(ModItems.STARDUST_INGOT);
+
+			entries.accept(ModItems.STARDUST_PICKAXE);
+			entries.accept(ModItems.STARDUST_AXE);
+			entries.accept(ModItems.STARDUST_SWORD);
+
+			entries.accept(ModItems.STARDUST_HELMET);
+			entries.accept(ModItems.STARDUST_CHESTPLATE);
+			entries.accept(ModItems.STARDUST_LEGGINGS);
+			entries.accept(ModItems.STARDUST_BOOTS);
+
 			// 飞升 I-X 药水 deliberately stay out of this tab: vanilla's "Food & Drinks" tab generates one
 			// minecraft:potion entry per registered Potion, so they already show up there (and only there).
 		});

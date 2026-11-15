@@ -18,6 +18,8 @@ public final class ModArmorMaterials {
 	public static Holder<ArmorMaterial> TITANIUM;
 	/** 蓝曜甲: layers at assets/transfinite_void/textures/models/armor/cyanisidian_layer_1|2.png */
 	public static Holder<ArmorMaterial> CYANISIDIAN;
+	/** 星陨甲: layers at assets/transfinite_void/textures/models/armor/stardust_layer_1|2.png */
+	public static Holder<ArmorMaterial> STARDUST;
 
 	private ModArmorMaterials() {
 	}
@@ -60,5 +62,24 @@ public final class ModArmorMaterials {
 
 		CYANISIDIAN = Registry.registerForHolder(
 				BuiltInRegistries.ARMOR_MATERIAL, TransfiniteVoid.id("cyanisidian"), cyanisidian);
+
+		EnumMap<ArmorItem.Type, Integer> stardustDefense = new EnumMap<>(ArmorItem.Type.class);
+		stardustDefense.put(ArmorItem.Type.HELMET, 25);
+		stardustDefense.put(ArmorItem.Type.CHESTPLATE, 50);
+		stardustDefense.put(ArmorItem.Type.LEGGINGS, 30);
+		stardustDefense.put(ArmorItem.Type.BOOTS, 20);
+		stardustDefense.put(ArmorItem.Type.BODY, 50);
+
+		ArmorMaterial stardust = new ArmorMaterial(
+				Map.copyOf(stardustDefense),
+				15,
+				SoundEvents.ARMOR_EQUIP_NETHERITE,
+				() -> Ingredient.of(ModItems.STARDUST_INGOT),
+				List.of(new ArmorMaterial.Layer(TransfiniteVoid.id("stardust"))),
+				5.0F,
+				0.0F);
+
+		STARDUST = Registry.registerForHolder(
+				BuiltInRegistries.ARMOR_MATERIAL, TransfiniteVoid.id("stardust"), stardust);
 	}
 }

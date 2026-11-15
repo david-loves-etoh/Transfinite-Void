@@ -33,6 +33,13 @@ public final class ModTiers {
 	/** 蓝曜剑: 1,000,000 uses. */
 	public static final Tier CYANISIDIAN_SWORD = new CyanisidianTier(1000000, 1.0F);
 
+	/** 星陨镐: 99999 uses, 2x the cyanisidian pickaxe (27.0 -> 54.0). */
+	public static final Tier STARDUST_PICKAXE = new StardustTier(99999, 54.0F);
+	/** 星陨斧: 199999 uses, 2x the cyanisidian axe's effective speed (9.0 + 26 = 35 -> 70). */
+	public static final Tier STARDUST_AXE = new StardustTier(199999, 70.0F);
+	/** 星陨剑: 299999 uses. */
+	public static final Tier STARDUST_SWORD = new StardustTier(299999, 1.0F);
+
 	private ModTiers() {
 	}
 
@@ -96,6 +103,22 @@ public final class ModTiers {
 		@Override
 		public Ingredient getRepairIngredient() {
 			return Ingredient.of(ModItems.CYANISIDIAN_PLATE);
+		}
+	}
+
+	private static final class StardustTier extends ModTier {
+		private StardustTier(int uses, float speed) {
+			super(uses, speed);
+		}
+
+		@Override
+		public TagKey<Block> getIncorrectBlocksForDrops() {
+			return ModTags.INCORRECT_FOR_STARDUST_TOOL;
+		}
+
+		@Override
+		public Ingredient getRepairIngredient() {
+			return Ingredient.of(ModItems.STARDUST_INGOT);
 		}
 	}
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "transfinite_void:stardust_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "transfinite_void:stardust_ingot_from_block"
+  }
+}

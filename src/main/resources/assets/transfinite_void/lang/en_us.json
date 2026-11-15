@@ -147,5 +147,21 @@
   "potion.potency.2": "III",
   "potion.potency.3": "IV",
   "potion.potency.4": "V",
-  "potion.potency.5": "VI"
+  "potion.potency.5": "VI",
+  "block.transfinite_void.stardust_ore": "Stardust Ore",
+  "block.transfinite_void.stardust_block": "Block of Stardust",
+  "item.transfinite_void.stardust_dust": "Stardust Dust",
+  "item.transfinite_void.stardust_ingot": "Stardust Ingot",
+  "item.transfinite_void.stardust_pickaxe": "Stardust Pickaxe",
+  "item.transfinite_void.stardust_axe": "Stardust Axe",
+  "item.transfinite_void.stardust_sword": "Stardust Sword",
+  "item.transfinite_void.stardust_helmet": "Stardust Helmet",
+  "item.transfinite_void.stardust_chestplate": "Stardust Chestplate",
+  "item.transfinite_void.stardust_leggings": "Stardust Leggings",
+  "item.transfinite_void.stardust_boots": "Stardust Boots",
+  "death.attack.true_damage": "%1$s was erased by true damage",
+  "tooltip.transfinite_void.true_damage": "Deals %s true damage (ignores armour, effects and invulnerability)",
+  "tooltip.transfinite_void.combo_chance": "%s%% chance to chain an extra double-damage hit",
+  "tooltip.transfinite_void.unbreakable": "Unbreakable",
+  "tooltip.transfinite_void.magic_defense": "+%s magic / true damage reduction"
 }

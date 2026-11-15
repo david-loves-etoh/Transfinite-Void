@@ -3,6 +3,8 @@
     "transfinite_void:titanium_ore",
     "transfinite_void:titanium_block",
     "transfinite_void:cyanisidian_ore",
-    "transfinite_void:cyanisidian_block"
+    "transfinite_void:cyanisidian_block",
+    "transfinite_void:stardust_ore",
+    "transfinite_void:stardust_block"
   ]
 }

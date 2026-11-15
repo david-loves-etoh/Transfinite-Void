@@ -28,6 +28,11 @@ public final class ModBlocks {
 	/** 蓝曜块 / Block of Cyanisidian. */
 	public static Block CYANISIDIAN_BLOCK;
 
+	/** 星陨矿 / Stardust Ore — mining level 6, i.e. the cyanisidian tier and above. */
+	public static Block STARDUST_ORE;
+	/** 星陨块 / Block of Stardust. */
+	public static Block STARDUST_BLOCK;
+
 	private ModBlocks() {
 	}
 
@@ -74,6 +79,29 @@ public final class ModBlocks {
 				new Block(BlockBehaviour.Properties.of()
 						.mapColor(MapColor.COLOR_CYAN)
 						.instrument(NoteBlockInstrument.BASEDRUM)
+						.requiresCorrectToolForDrops()
+						.strength(50.0F, 1200.0F)
+						.sound(SoundType.STONE)));
+
+		// Mining level 6: the block is additionally listed in #transfinite_void:incorrect_for_titanium_tool, so the
+		// titanium (level 5) tier cannot take drops either; the cyanisidian tier (level 6) can.
+		STARDUST_ORE = Registry.register(
+				BuiltInRegistries.BLOCK,
+				TransfiniteVoid.id("stardust_ore"),
+				new DropExperienceBlock(UniformInt.of(8, 20),
+						BlockBehaviour.Properties.of()
+								.mapColor(MapColor.COLOR_YELLOW)
+								.instrument(NoteBlockInstrument.CHIME)
+								.requiresCorrectToolForDrops()
+								.strength(165.0F, 3600.0F)
+								.sound(SoundType.STONE)));
+
+		STARDUST_BLOCK = Registry.register(
+				BuiltInRegistries.BLOCK,
+				TransfiniteVoid.id("stardust_block"),
+				new Block(BlockBehaviour.Properties.of()
+						.mapColor(MapColor.COLOR_YELLOW)
+						.instrument(NoteBlockInstrument.CHIME)
 						.requiresCorrectToolForDrops()
 						.strength(50.0F, 1200.0F)
 						.sound(SoundType.STONE)));

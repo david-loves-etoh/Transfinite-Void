@@ -147,5 +147,21 @@
   "potion.potency.2": "III",
   "potion.potency.3": "IV",
   "potion.potency.4": "V",
-  "potion.potency.5": "VI"
+  "potion.potency.5": "VI",
+  "block.transfinite_void.stardust_ore": "星陨矿",
+  "block.transfinite_void.stardust_block": "星陨块",
+  "item.transfinite_void.stardust_dust": "星陨粒",
+  "item.transfinite_void.stardust_ingot": "星陨锭",
+  "item.transfinite_void.stardust_pickaxe": "星陨镐",
+  "item.transfinite_void.stardust_axe": "星陨斧",
+  "item.transfinite_void.stardust_sword": "星陨剑",
+  "item.transfinite_void.stardust_helmet": "星陨头盔",
+  "item.transfinite_void.stardust_chestplate": "星陨胸甲",
+  "item.transfinite_void.stardust_leggings": "星陨护腿",
+  "item.transfinite_void.stardust_boots": "星陨靴子",
+  "death.attack.true_damage": "%1$s 被真实伤害抹除",
+  "tooltip.transfinite_void.true_damage": "造成 %s 点真实伤害（无视护甲、效果与无敌帧）",
+  "tooltip.transfinite_void.combo_chance": "%s%% 概率触发连击，追加一次双倍伤害",
+  "tooltip.transfinite_void.unbreakable": "无法破坏",
+  "tooltip.transfinite_void.magic_defense": "+%s 魔法／真实伤害减免"
 }

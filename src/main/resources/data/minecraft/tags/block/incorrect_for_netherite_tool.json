@@ -1,6 +1,8 @@
 {
   "values": [
     "transfinite_void:cyanisidian_ore",
-    "transfinite_void:cyanisidian_block"
+    "transfinite_void:cyanisidian_block",
+    "transfinite_void:stardust_ore",
+    "transfinite_void:stardust_block"
   ]
 }

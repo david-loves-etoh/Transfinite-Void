@@ -40,6 +40,26 @@ A Fabric mod for Minecraft 1.21.1 (mojmap, Java 21).
 | 蓝曜护腿 `cyanisidian_leggings` | +17 armour, +2.5 toughness, +1.2 knockback resistance, +1 max health, 1,000,000 durability, Unbreaking V. |
 | 蓝曜靴子 `cyanisidian_boots` | +10 armour, +2 toughness, +1 knockback resistance, +0.4 movement speed, +0.2 jump strength, 1,000,000 durability, Unbreaking V. |
 
+## Stardust content (星陨)
+
+| Content | Notes |
+|---|---|
+| 星陨矿 `stardust_ore` | Mining level 6 (vanilla tiers **and** the titanium tier are listed in its incorrect tags; the cyanisidian tier's empty tag allows it). Hardness/blast 165 / 3600 (not specified, same as the cyanisidian ore). Drops stardust dust, 8-20 XP. **No world generation**, creative tab only. |
+| 星陨粒 `stardust_dust` | 9 -> 1 ingot. |
+| 星陨锭 `stardust_ingot` | 9 -> 1 block (and 1 block -> 9 ingots, matching the cyanisidian block). |
+| 星陨块 `stardust_block` | Same mining level as the ore. |
+| 星陨镐 `stardust_pickaxe` | Mining level 7, 99999 durability, 54.0 mining speed (2x the cyanisidian pickaxe). |
+| 星陨斧 `stardust_axe` | Mining level 7, 199999 durability, 70.0 mining speed (2x the cyanisidian axe's effective 35). |
+| 星陨剑 `stardust_sword` | 30 attack damage, 299999 durability, attack speed 4.8/s (a third of a netherite sword's cooldown), +10 true damage per hit, 10% chance to chain a double-damage follow-up hit (each follow-up can chain again). |
+| 星陨头盔 `stardust_helmet` | Unbreakable. +25 armour, +5 toughness, +5 max health, +3 magic/true defence. Worn: Water Breathing III, Haste III. |
+| 星陨胸甲 `stardust_chestplate` | Unbreakable. +50 armour, +9 toughness, +10 max health, +6 magic/true defence. Worn: Hero of the Village III, Ascension III, Health Boost III, Regeneration III. |
+| 星陨护腿 `stardust_leggings` | Unbreakable. +30 armour, +6 toughness, +8 max health, +4 magic/true defence. Worn: Jump Boost IV, Slow Falling. |
+| 星陨靴子 `stardust_boots` | Unbreakable. +20 armour, +4 toughness, +15 max health, +1 magic/true defence. Worn: Speed V. |
+
+Textures use a hand-built deep-blue/yellow material with a horizontal motion-blur smear (`stardust_pattern` in the
+generator): the block is the raw material, the ore is that material in vanilla stone, tools/armour are vanilla iron
+shapes painted with it (wood handles kept).
+
 ## Effects
 
 * **流血 / Bleeding** — `2^(level-1)` damage every 3 s (level III = 4 HP per tick). Uses the custom damage type
@@ -63,6 +83,10 @@ A Fabric mod for Minecraft 1.21.1 (mojmap, Java 21).
 * Mod icon: `assets/transfinite_void/icon.png` (256x256) is composed from the project banner — the 915x143 banner's
   single-line wordmark plus tagline are placed on a rendered starfield (nebula clouds, milky-way band, glare stars),
   because the icon slot in Mod Menu is square.
+* Damage types: `transfinite_void:bleeding` (bypasses armour) and `transfinite_void:true_damage` (bypasses armour,
+  effects, enchantments, resistance and the invulnerability window). The stardust sword's "magic &amp; true defense"
+  reduction is a `LivingEntity#hurt` mixin that subtracts the summed armour value from magic damage and true damage;
+  a thread-local guard re-enters `hurt` once with the reduced amount.
 * Effect HUD icons live at `assets/transfinite_void/textures/mob_effect/ascension.png` and `bleeding.png` (18x18).
   1.21 resolves the sprite from the effect's registry key, and the vanilla `mob_effects` atlas is a directory source, so
   a plain PNG in the mod namespace is enough.

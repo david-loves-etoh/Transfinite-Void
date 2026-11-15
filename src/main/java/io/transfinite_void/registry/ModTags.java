@@ -17,6 +17,8 @@ public final class ModTags {
 			TagKey.create(Registries.BLOCK, TransfiniteVoid.id("incorrect_for_titanium_tool"));
 	public static final TagKey<Block> INCORRECT_FOR_CYANISIDIAN_TOOL =
 			TagKey.create(Registries.BLOCK, TransfiniteVoid.id("incorrect_for_cyanisidian_tool"));
+	public static final TagKey<Block> INCORRECT_FOR_STARDUST_TOOL =
+			TagKey.create(Registries.BLOCK, TransfiniteVoid.id("incorrect_for_stardust_tool"));
 
 	private ModTags() {
 	}
