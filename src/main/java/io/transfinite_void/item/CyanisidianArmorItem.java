@@ -1,12 +1,14 @@
 package io.transfinite_void.item;
 
 import io.transfinite_void.TransfiniteVoid;
+import io.transfinite_void.registry.ModEffects;
 import io.transfinite_void.util.EnchantBaking;
-import net.minecraft.ChatFormatting;
+import io.transfinite_void.util.GearTooltip;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -23,22 +25,21 @@ import java.util.List;
 import java.util.function.Function;
 
 /**
- * 蓝曜甲 piece.
- * <p>
- * Every defence / toughness / knockback / max-health / movement / jump value of the design is per piece, so the
- * modifiers are built by hand (an {@code ArmorMaterial} only carries one toughness value). All pieces also carry a
- * built-in Unbreaking V.
+ * 蓝曜甲 piece: per-piece armour / toughness / knockback / max health / movement / jump modifiers, a built-in
+ * Unbreaking V and (chestplate only) 飞升 III + 生命提升 III while worn.
  */
-public class CyanisidianArmorItem extends ArmorItem {
+public class CyanisidianArmorItem extends ArmorItem implements WornEffectsItem {
 	public static final int BUILT_IN_UNBREAKING = 5;
 
 	private final Stats stats;
+	private final List<WornEffect> wornEffects;
 	private final ItemAttributeModifiers modifiers;
 
 	public CyanisidianArmorItem(Holder<ArmorMaterial> material, ArmorItem.Type type, Stats stats,
-			Item.Properties properties) {
+			List<WornEffect> wornEffects, Item.Properties properties) {
 		super(material, type, properties.attributes(buildModifiers(type, stats)));
 		this.stats = stats;
+		this.wornEffects = List.copyOf(wornEffects);
 		this.modifiers = buildModifiers(type, stats);
 	}
 
@@ -48,42 +49,40 @@ public class CyanisidianArmorItem extends ArmorItem {
 	}
 
 	@Override
+	public List<WornEffect> wornEffects() {
+		return this.wornEffects;
+	}
+
+	@Override
 	public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
 		EnchantBaking.apply(stack, level, Enchantments.UNBREAKING, BUILT_IN_UNBREAKING);
 	}
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-		tooltip.add(Component.translatable("tooltip.transfinite_void.builtin_unbreaking", BUILT_IN_UNBREAKING)
-				.withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.unbreaking_note")
-				.withStyle(ChatFormatting.DARK_GRAY));
-
-		if (this.stats.knockbackResistance() > 0.0F) {
-			tooltip.add(Component.translatable("tooltip.transfinite_void.knockback_resistance",
-					format(this.stats.knockbackResistance())).withStyle(ChatFormatting.DARK_GRAY));
-		}
+		GearTooltip.armorHeader(tooltip, this.getType());
+		GearTooltip.attribute(tooltip, Attributes.ARMOR, this.stats.armor());
+		GearTooltip.attribute(tooltip, Attributes.ARMOR_TOUGHNESS, this.stats.toughness());
 
 		if (this.stats.maxHealth() > 0.0F) {
-			tooltip.add(Component.translatable("tooltip.transfinite_void.max_health_bonus",
-					format(this.stats.maxHealth())).withStyle(ChatFormatting.DARK_GRAY));
+			GearTooltip.attribute(tooltip, Attributes.MAX_HEALTH, this.stats.maxHealth());
+		}
+
+		if (this.stats.knockbackResistance() > 0.0F) {
+			GearTooltip.attribute(tooltip, Attributes.KNOCKBACK_RESISTANCE, GearTooltip.knockbackDisplay(this.stats.knockbackResistance()));
 		}
 
 		if (this.stats.movementSpeed() > 0.0F) {
-			tooltip.add(Component.translatable("tooltip.transfinite_void.movement_speed_bonus",
-					format(this.stats.movementSpeed())).withStyle(ChatFormatting.DARK_GRAY));
+			GearTooltip.attribute(tooltip, Attributes.MOVEMENT_SPEED, this.stats.movementSpeed());
 		}
 
 		if (this.stats.jumpStrength() > 0.0F) {
-			tooltip.add(Component.translatable("tooltip.transfinite_void.jump_strength_bonus",
-					format(this.stats.jumpStrength())).withStyle(ChatFormatting.DARK_GRAY));
+			GearTooltip.attribute(tooltip, Attributes.JUMP_STRENGTH, this.stats.jumpStrength());
 		}
 
+		GearTooltip.enchantment(tooltip, Enchantments.UNBREAKING, BUILT_IN_UNBREAKING);
+		GearTooltip.effects(tooltip, this.wornEffects);
 		super.appendHoverText(stack, context, tooltip, flag);
-	}
-
-	private static String format(float value) {
-		return value == Math.round(value) ? String.valueOf((int) value) : String.valueOf(value);
 	}
 
 	private static ItemAttributeModifiers buildModifiers(ArmorItem.Type type, Stats stats) {
@@ -97,7 +96,7 @@ public class CyanisidianArmorItem extends ArmorItem {
 		add(builder, slot, type, Attributes.MOVEMENT_SPEED, "speed", stats.movementSpeed());
 		add(builder, slot, type, Attributes.JUMP_STRENGTH, "jump", stats.jumpStrength());
 
-		return builder.build();
+		return builder.build().withTooltip(false);
 	}
 
 	private static void add(ItemAttributeModifiers.Builder builder, EquipmentSlotGroup slot, ArmorItem.Type type,
@@ -112,32 +111,37 @@ public class CyanisidianArmorItem extends ArmorItem {
 				slot);
 	}
 
-	/** Per-piece stats of the design. */
+	/** armour, toughness, knockback resistance, max health, movement speed, jump strength. */
 	public record Stats(float armor, float toughness, float knockbackResistance, float maxHealth,
 			float movementSpeed, float jumpStrength) {
 	}
 
+	private static final List<WornEffect> NONE = List.of();
+	private static final List<WornEffect> CHEST_EFFECTS = List.of(
+			new WornEffect(ModEffects.ASCENSION, 3),
+			new WornEffect(MobEffects.HEALTH_BOOST, 3));
+
 	/** 蓝曜头盔: +15 armour, +2 toughness, +1 knockback resistance, +1 max health. */
 	public static Function<Item.Properties, CyanisidianArmorItem> helmet(Holder<ArmorMaterial> material) {
 		return properties -> new CyanisidianArmorItem(material, ArmorItem.Type.HELMET,
-				new Stats(15.0F, 2.0F, 1.0F, 1.0F, 0.0F, 0.0F), properties);
+				new Stats(15.0F, 2.0F, 0.1F, 1.0F, 0.0F, 0.0F), NONE, properties);
 	}
 
-	/** 蓝曜胸甲: +20 armour, +3 toughness, +1.5 knockback resistance, +2 max health. */
+	/** 蓝曜胸甲: +20 armour, +3 toughness, +1.5 knockback resistance, +2 max health, 飞升 III + 生命提升 III. */
 	public static Function<Item.Properties, CyanisidianArmorItem> chestplate(Holder<ArmorMaterial> material) {
 		return properties -> new CyanisidianArmorItem(material, ArmorItem.Type.CHESTPLATE,
-				new Stats(20.0F, 3.0F, 1.5F, 2.0F, 0.0F, 0.0F), properties);
+				new Stats(20.0F, 3.0F, 0.15F, 2.0F, 0.0F, 0.0F), CHEST_EFFECTS, properties);
 	}
 
 	/** 蓝曜护腿: +17 armour, +2.5 toughness, +1.2 knockback resistance, +1 max health. */
 	public static Function<Item.Properties, CyanisidianArmorItem> leggings(Holder<ArmorMaterial> material) {
 		return properties -> new CyanisidianArmorItem(material, ArmorItem.Type.LEGGINGS,
-				new Stats(17.0F, 2.5F, 1.2F, 1.0F, 0.0F, 0.0F), properties);
+				new Stats(17.0F, 2.5F, 0.12F, 1.0F, 0.0F, 0.0F), NONE, properties);
 	}
 
 	/** 蓝曜靴子: +10 armour, +2 toughness, +1 knockback resistance, +0.4 movement speed, +0.2 jump strength. */
 	public static Function<Item.Properties, CyanisidianArmorItem> boots(Holder<ArmorMaterial> material) {
 		return properties -> new CyanisidianArmorItem(material, ArmorItem.Type.BOOTS,
-				new Stats(10.0F, 2.0F, 1.0F, 0.0F, 0.4F, 0.2F), properties);
+				new Stats(10.0F, 2.0F, 0.1F, 0.0F, 0.4F, 0.2F), NONE, properties);
 	}
 }

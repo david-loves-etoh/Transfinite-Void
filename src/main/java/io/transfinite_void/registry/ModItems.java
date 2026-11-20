@@ -6,6 +6,7 @@ import io.transfinite_void.item.CyanisidianAxeItem;
 import io.transfinite_void.item.CyanisidianPickaxeItem;
 import io.transfinite_void.item.CyanisidianSwordItem;
 import io.transfinite_void.item.PantheonItem;
+import io.transfinite_void.item.PocketWatchItem;
 import io.transfinite_void.item.StardustArmorItem;
 import io.transfinite_void.item.StardustAxeItem;
 import io.transfinite_void.item.StardustFistSwordItem;
@@ -43,6 +44,8 @@ public final class ModItems {
 
 	/** 万神殿 / Pantheon — summons Ascension-buffed bosses. */
 	public static Item PANTHEON;
+	/** 高维怀表 / Hyperdimensional Pocket Watch — freezes time. */
+	public static Item POCKET_WATCH;
 
 	/** 蓝曜石 / Cyanisidian gem, dropped by the ore. */
 	public static Item CYANISIDIAN;
@@ -112,18 +115,24 @@ public final class ModItems {
 		PANTHEON = register("pantheon", PantheonItem::new,
 				new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
 
+		POCKET_WATCH = register("pocket_watch", PocketWatchItem::new,
+				new Item.Properties()
+						.stacksTo(1)
+						.rarity(Rarity.EPIC)
+						.component(DataComponents.UNBREAKABLE, new Unbreakable(false)));
+
 		TITANIUM_PICKAXE = register("titanium_pickaxe",
 				properties -> new TitaniumPickaxeItem(ModTiers.TITANIUM_PICKAXE, properties),
 				new Item.Properties().attributes(
-						DiggerItem.createAttributes(ModTiers.TITANIUM_PICKAXE, 4.0F, -2.8F)));
+						DiggerItem.createAttributes(ModTiers.TITANIUM_PICKAXE, 4.0F, -2.8F).withTooltip(false)));
 		TITANIUM_AXE = register("titanium_axe",
 				properties -> new TitaniumAxeItem(ModTiers.TITANIUM_AXE, properties),
 				new Item.Properties().attributes(
-						DiggerItem.createAttributes(ModTiers.TITANIUM_AXE, 6.0F, -3.0F)));
+						DiggerItem.createAttributes(ModTiers.TITANIUM_AXE, 6.0F, -3.0F).withTooltip(false)));
 		TITANIUM_SWORD = register("titanium_sword",
 				properties -> new TitaniumSwordItem(ModTiers.TITANIUM_SWORD, properties),
 				new Item.Properties().attributes(
-						SwordItem.createAttributes(ModTiers.TITANIUM_SWORD, 9, -2.4F)));
+						SwordItem.createAttributes(ModTiers.TITANIUM_SWORD, 9, -2.4F).withTooltip(false)));
 
 		TITANIUM_HELMET = register("titanium_helmet",
 				TitaniumArmorItem.helmet(ModArmorMaterials.TITANIUM),
@@ -158,7 +167,7 @@ public final class ModItems {
 		CYANISIDIAN_PICKAXE = register("cyanisidian_pickaxe",
 				properties -> new CyanisidianPickaxeItem(ModTiers.CYANISIDIAN_PICKAXE, properties),
 				new Item.Properties().attributes(
-						DiggerItem.createAttributes(ModTiers.CYANISIDIAN_PICKAXE, 4.0F, -2.8F)));
+						DiggerItem.createAttributes(ModTiers.CYANISIDIAN_PICKAXE, 4.0F, -2.8F).withTooltip(false)));
 
 		// Efficiency V is the mining_efficiency attribute (+26), which is exactly what the enchantment grants.
 		CYANISIDIAN_AXE = register("cyanisidian_axe",
@@ -169,7 +178,7 @@ public final class ModItems {
 										new AttributeModifier(TransfiniteVoid.id("cyanisidian_axe_efficiency"),
 												CyanisidianAxeItem.BUILT_IN_EFFICIENCY,
 												AttributeModifier.Operation.ADD_VALUE),
-										EquipmentSlotGroup.MAINHAND)));
+										EquipmentSlotGroup.MAINHAND).withTooltip(false)));
 
 		CYANISIDIAN_SWORD = register("cyanisidian_sword",
 				properties -> new CyanisidianSwordItem(ModTiers.CYANISIDIAN_SWORD, properties),
@@ -184,7 +193,7 @@ public final class ModItems {
 										new AttributeModifier(TransfiniteVoid.id("cyanisidian_sword_jump"),
 												CyanisidianSwordItem.HELD_JUMP_STRENGTH,
 												AttributeModifier.Operation.ADD_VALUE),
-										EquipmentSlotGroup.MAINHAND)));
+										EquipmentSlotGroup.MAINHAND).withTooltip(false)));
 
 		CYANISIDIAN_HELMET = register("cyanisidian_helmet",
 				CyanisidianArmorItem.helmet(ModArmorMaterials.CYANISIDIAN),
@@ -216,18 +225,18 @@ public final class ModItems {
 		STARDUST_PICKAXE = register("stardust_pickaxe",
 				properties -> new StardustPickaxeItem(ModTiers.STARDUST_PICKAXE, properties),
 				new Item.Properties().attributes(
-						DiggerItem.createAttributes(ModTiers.STARDUST_PICKAXE, 4.0F, -2.8F)));
+						DiggerItem.createAttributes(ModTiers.STARDUST_PICKAXE, 4.0F, -2.8F).withTooltip(false)));
 
 		STARDUST_AXE = register("stardust_axe",
 				properties -> new StardustAxeItem(ModTiers.STARDUST_AXE, properties),
 				new Item.Properties().attributes(
-						DiggerItem.createAttributes(ModTiers.STARDUST_AXE, 6.0F, -3.0F)));
+						DiggerItem.createAttributes(ModTiers.STARDUST_AXE, 6.0F, -3.0F).withTooltip(false)));
 
 		// +0.8 attack speed modifier -> 4.8 attacks per second, i.e. a third of a netherite sword's cooldown (4.0 - 2.4).
 		STARDUST_SWORD = register("stardust_sword",
 				properties -> new StardustSwordItem(ModTiers.STARDUST_SWORD, properties),
 				new Item.Properties().attributes(
-						SwordItem.createAttributes(ModTiers.STARDUST_SWORD, 29, 0.8F)));
+						SwordItem.createAttributes(ModTiers.STARDUST_SWORD, 29, 0.8F).withTooltip(false)));
 
 		// 无法破坏: the unbreakable component makes the durability meaningless; stacksTo(1) keeps it from stacking.
 		STARDUST_FIST_SWORD = register("stardust_fist_sword",
@@ -235,7 +244,7 @@ public final class ModItems {
 				new Item.Properties()
 						.stacksTo(1)
 						.component(DataComponents.UNBREAKABLE, new Unbreakable(false))
-						.attributes(SwordItem.createAttributes(ModTiers.STARDUST_SWORD, 41, 0.8F)));
+						.attributes(SwordItem.createAttributes(ModTiers.STARDUST_SWORD, 41, 0.8F).withTooltip(false)));
 
 		STARDUST_HELMET = register("stardust_helmet",
 				StardustArmorItem.helmet(ModArmorMaterials.STARDUST), unbreakableArmor());

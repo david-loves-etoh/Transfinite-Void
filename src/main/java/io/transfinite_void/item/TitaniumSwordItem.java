@@ -1,7 +1,9 @@
 package io.transfinite_void.item;
 
 import io.transfinite_void.registry.ModEffects;
-import net.minecraft.ChatFormatting;
+import io.transfinite_void.util.GearTooltip;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 
@@ -32,17 +35,17 @@ public class TitaniumSwordItem extends SwordItem {
 		super.postHurtEnemy(stack, target, attacker);
 
 		if (!target.level().isClientSide() && target.isAlive()) {
-			target.addEffect(new MobEffectInstance(
-					ModEffects.BLEEDING, BLEED_DURATION, BLEED_AMPLIFIER, false, true, true));
+			target.addEffect(new MobEffectInstance(ModEffects.BLEEDING, BLEED_DURATION, BLEED_AMPLIFIER, false, true, true));
 		}
 	}
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-		tooltip.add(Component.translatable("tooltip.transfinite_void.bleeding", BLEED_AMPLIFIER + 1, BLEED_DURATION / 20)
-				.withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.mending_x2")
-				.withStyle(ChatFormatting.GRAY));
+		GearTooltip.header(tooltip, "mainhand");
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_DAMAGE, GearTooltip.attackDamage(stack));
+		GearTooltip.ability(tooltip, "tooltip.transfinite_void.bleeding", BLEED_AMPLIFIER + 1, BLEED_DURATION / 20);
+		GearTooltip.ability(tooltip, "tooltip.transfinite_void.mending_x2");
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_SPEED, GearTooltip.attackSpeed(stack));
 		super.appendHoverText(stack, context, tooltip, flag);
 	}
 }

@@ -1,8 +1,9 @@
 package io.transfinite_void.item;
 
 import io.transfinite_void.util.ComboDamage;
+import io.transfinite_void.util.GearTooltip;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import io.transfinite_void.util.TransfiniteDamage;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,10 +46,12 @@ public class StardustSwordItem extends SwordItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-		tooltip.add(Component.translatable("tooltip.transfinite_void.true_damage", TRUE_DAMAGE)
-				.withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.combo_chance",
-				Math.round(ComboDamage.CHANCE * 100.0F)).withStyle(ChatFormatting.GRAY));
+		GearTooltip.header(tooltip, "mainhand");
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_DAMAGE, GearTooltip.attackDamage(stack));
+		GearTooltip.customStat(tooltip, "stat.transfinite_void.true_damage", TRUE_DAMAGE);
+		GearTooltip.ability(tooltip, "tooltip.transfinite_void.combo_line",
+				Math.round(ComboDamage.CHANCE * 100.0F), Math.round(ComboDamage.CHANCE * 100.0F));
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_SPEED, GearTooltip.attackSpeed(stack));
 		super.appendHoverText(stack, context, tooltip, flag);
 	}
 }

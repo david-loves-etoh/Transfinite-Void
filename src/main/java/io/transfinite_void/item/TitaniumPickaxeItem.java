@@ -1,9 +1,11 @@
 package io.transfinite_void.item;
 
 import io.transfinite_void.util.EnchantBaking;
-import net.minecraft.ChatFormatting;
+import io.transfinite_void.util.GearTooltip;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +23,7 @@ import java.util.List;
  */
 public class TitaniumPickaxeItem extends PickaxeItem {
 	public static final int BUILT_IN_FORTUNE = 3;
+	public static final int MINING_LEVEL = 5;
 
 	public TitaniumPickaxeItem(Tier tier, Item.Properties properties) {
 		super(tier, properties);
@@ -36,10 +39,10 @@ public class TitaniumPickaxeItem extends PickaxeItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-		tooltip.add(Component.translatable("tooltip.transfinite_void.mining_level", 5)
-				.withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.builtin_fortune", BUILT_IN_FORTUNE)
-				.withStyle(ChatFormatting.GRAY));
+		GearTooltip.header(tooltip, "mainhand");
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_DAMAGE, GearTooltip.attackDamage(stack));
+		GearTooltip.enchantment(tooltip, Enchantments.FORTUNE, BUILT_IN_FORTUNE);
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_SPEED, GearTooltip.attackSpeed(stack));
 		super.appendHoverText(stack, context, tooltip, flag);
 	}
 }

@@ -1,7 +1,9 @@
 package io.transfinite_void.item;
 
 import io.transfinite_void.util.ChainMining;
-import net.minecraft.ChatFormatting;
+import io.transfinite_void.util.GearTooltip;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -26,6 +28,8 @@ import java.util.List;
 public class CyanisidianAxeItem extends AxeItem {
 	/** Efficiency V adds {@code level^2 + 1 = 26} to the mining_efficiency attribute. */
 	public static final double BUILT_IN_EFFICIENCY = 26.0D;
+	public static final int EFFICIENCY_LEVEL = 5;
+	public static final int MINING_LEVEL = 6;
 
 	public CyanisidianAxeItem(Tier tier, Item.Properties properties) {
 		super(tier, properties);
@@ -46,10 +50,12 @@ public class CyanisidianAxeItem extends AxeItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-		tooltip.add(Component.translatable("tooltip.transfinite_void.mining_level", 6).withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.efficiency", 5).withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.chain_logs", ChainMining.BLOCK_LIMIT / 4)
-				.withStyle(ChatFormatting.GRAY));
+		GearTooltip.header(tooltip, "mainhand");
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_DAMAGE, GearTooltip.attackDamage(stack));
+		GearTooltip.enchantment(tooltip, Enchantments.EFFICIENCY, EFFICIENCY_LEVEL);
+		GearTooltip.ability(tooltip, "tooltip.transfinite_void.chain_logs",
+				ChainMining.BLOCK_LIMIT, ChainMining.DURABILITY_DIVISOR);
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_SPEED, GearTooltip.attackSpeed(stack));
 		super.appendHoverText(stack, context, tooltip, flag);
 	}
 }

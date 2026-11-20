@@ -61,6 +61,19 @@ Textures use a hand-built deep-blue/yellow material with a horizontal motion-blu
 generator): the block is the raw material, the ore is that material in vanilla stone, tools/armour are vanilla iron
 shapes painted with it (wood handles kept).
 
+## Creative tabs
+
+`transfinite_void:materials` (超限虚空-材料) holds every ore / ingot / block / plate / rod / core / dust;
+`transfinite_void:equipment` (超限虚空-装备) holds all tools, weapons, armour and the two hand-held artefacts
+(万神殿 `pantheon`, 高维怀表 `pocket_watch`). Potions are not in either tab — vanilla's *Food & Drinks* tab generates
+them from the potion registry.
+
+## Artefacts
+
+| Item | Notes |
+|---|---|
+| 高维怀表 `pocket_watch` | Unbreakable. Right-click freezes time (every non-player entity on the server skips its tick and the daylight cycle is switched off), right-click again resumes it. Also resumes automatically when the holder dies or disconnects. No recipe — creative only. |
+
 ## Effects
 
 * **流血 / Bleeding** — `2^(level-1)` damage every 3 s (level III = 4 HP per tick). Uses the custom damage type
@@ -68,6 +81,24 @@ shapes painted with it (wood handles kept).
   … `_10` (20 s each), which makes vanilla's *Food & Drinks* tab generate the potion, splash, lingering and tipped
   arrow entries automatically.
 * **飞升 / Ascension** — for level `n`: `+n^2` max health, `+n%` attack damage, heals `n^2` every 15 s.
+
+## Tooltip format (all gear)
+
+Every tool, weapon and armour piece renders its block through `GearTooltip`, in this exact order:
+
+```
+无法破坏                                  (only unbreakable items)
+在主手时： / 戴在头上时： / 穿在身上时： / 穿在腿上时： / 穿在脚上时：
+ +N 护甲值  /  +N 盔甲韧性  /  +N 最大生命值  /  +N 魔法/真实伤害减免  /  +N 击退减免 …
+ 30 攻击伤害 / 4.8 攻击速度                (vanilla attribute "equals" lines, dark green)
+ 时运 III / 精准采集 / 效率 V / 耐久 V      (built-in enchantments, vanilla enchantment format)
+ 连锁挖掘 … / 经验修补效率 x2 …             (ability lines, gray)
+ 水下呼吸 III / 急迫 III                   (continuous effects, level I prints without a numeral)
+```
+
+The vanilla attribute tooltip is switched off for mod gear (`attributes(...).withTooltip(false)`) so the lines above are
+the only ones shown. `WornEffectsItem` / `HeldEffectsItem` hold the effect lists on the item itself, and the single
+`GearEffectHandler` tick reads them — tooltip and actual behaviour cannot drift apart.
 
 ## Implementation notes
 
@@ -88,6 +119,8 @@ shapes painted with it (wood handles kept).
   effects, enchantments, resistance and the invulnerability window). The stardust sword's "magic &amp; true defense"
   reduction is a `LivingEntity#hurt` mixin that subtracts the summed armour value from magic damage and true damage;
   a thread-local guard re-enters `hurt` once with the reduced amount.
+* 高维怀表's time stop is a `Entity#tick` mixin: `TimeStop` keeps the owner plus the previous `daylightCycle` gamerule
+  value and `EntityMixin` cancels the tick of every non-player entity on the server while it is active.
 * Effect HUD icons live at `assets/transfinite_void/textures/mob_effect/ascension.png` and `bleeding.png` (18x18).
   1.21 resolves the sprite from the effect's registry key, and the vanilla `mob_effects` atlas is a directory source, so
   a plain PNG in the mod namespace is enough.

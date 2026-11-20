@@ -1,8 +1,6 @@
 package io.transfinite_void;
 
-import io.transfinite_void.event.CyanisidianGearHandler;
-import io.transfinite_void.event.StardustGearHandler;
-import io.transfinite_void.event.TitaniumArmorHandler;
+import io.transfinite_void.event.GearEffectHandler;
 import io.transfinite_void.registry.ModArmorMaterials;
 import io.transfinite_void.registry.ModBlocks;
 import io.transfinite_void.registry.ModCreativeTab;
@@ -34,11 +32,9 @@ public class TransfiniteVoid implements ModInitializer {
 		ModPotions.register();
 		ModItems.register();
 		ModCreativeTab.register();
-		TitaniumArmorHandler.register();
-		CyanisidianGearHandler.register();
-		StardustGearHandler.register();
+		GearEffectHandler.register();
 
-		LOGGER.info("Transfinite Void loaded: titanium content registered.");
+		LOGGER.info("Transfinite Void loaded.");
 	}
 
 	public static ResourceLocation id(String path) {

@@ -2,7 +2,8 @@ package io.transfinite_void.item;
 
 import io.transfinite_void.util.CopperWaxing;
 import io.transfinite_void.util.EnchantBaking;
-import net.minecraft.ChatFormatting;
+import io.transfinite_void.util.GearTooltip;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -29,6 +30,8 @@ import java.util.List;
  * copper interaction: on <em>waxed</em> copper it removes one oxidation step but never the wax.
  */
 public class TitaniumAxeItem extends AxeItem {
+	public static final int MINING_LEVEL = 5;
+
 	public TitaniumAxeItem(Tier tier, Item.Properties properties) {
 		super(tier, properties);
 	}
@@ -83,12 +86,11 @@ public class TitaniumAxeItem extends AxeItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-		tooltip.add(Component.translatable("tooltip.transfinite_void.mining_level", 5)
-				.withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.builtin_silk_touch")
-				.withStyle(ChatFormatting.GRAY));
-		tooltip.add(Component.translatable("tooltip.transfinite_void.copper_keeps_wax")
-				.withStyle(ChatFormatting.GRAY));
+		GearTooltip.header(tooltip, "mainhand");
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_DAMAGE, GearTooltip.attackDamage(stack));
+		GearTooltip.singleLevelEnchantment(tooltip, Enchantments.SILK_TOUCH);
+		GearTooltip.ability(tooltip, "tooltip.transfinite_void.copper_keeps_wax");
+		GearTooltip.baseStat(tooltip, Attributes.ATTACK_SPEED, GearTooltip.attackSpeed(stack));
 		super.appendHoverText(stack, context, tooltip, flag);
 	}
 }
