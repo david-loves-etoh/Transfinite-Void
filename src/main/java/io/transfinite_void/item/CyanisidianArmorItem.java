@@ -60,6 +60,7 @@ public class CyanisidianArmorItem extends ArmorItem implements WornEffectsItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+		GearTooltip.enchantment(tooltip, Enchantments.UNBREAKING, BUILT_IN_UNBREAKING);
 		GearTooltip.armorHeader(tooltip, this.getType());
 		GearTooltip.attribute(tooltip, Attributes.ARMOR, this.stats.armor());
 		GearTooltip.attribute(tooltip, Attributes.ARMOR_TOUGHNESS, this.stats.toughness());
@@ -80,7 +81,6 @@ public class CyanisidianArmorItem extends ArmorItem implements WornEffectsItem {
 			GearTooltip.attribute(tooltip, Attributes.JUMP_STRENGTH, this.stats.jumpStrength());
 		}
 
-		GearTooltip.enchantment(tooltip, Enchantments.UNBREAKING, BUILT_IN_UNBREAKING);
 		GearTooltip.effects(tooltip, this.wornEffects);
 		super.appendHoverText(stack, context, tooltip, flag);
 	}

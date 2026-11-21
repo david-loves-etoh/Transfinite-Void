@@ -4,8 +4,8 @@
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"EnchantmentHelperMixin",
-		"EntityMixin",
-		"LivingEntityMixin"
+		"LivingEntityMixin",
+		"ServerLevelMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

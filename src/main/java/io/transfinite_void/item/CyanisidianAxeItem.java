@@ -50,9 +50,9 @@ public class CyanisidianAxeItem extends AxeItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+		GearTooltip.enchantment(tooltip, Enchantments.EFFICIENCY, EFFICIENCY_LEVEL);
 		GearTooltip.header(tooltip, "mainhand");
 		GearTooltip.baseStat(tooltip, Attributes.ATTACK_DAMAGE, GearTooltip.attackDamage(stack));
-		GearTooltip.enchantment(tooltip, Enchantments.EFFICIENCY, EFFICIENCY_LEVEL);
 		GearTooltip.ability(tooltip, "tooltip.transfinite_void.chain_logs",
 				ChainMining.BLOCK_LIMIT, ChainMining.DURABILITY_DIVISOR);
 		GearTooltip.baseStat(tooltip, Attributes.ATTACK_SPEED, GearTooltip.attackSpeed(stack));

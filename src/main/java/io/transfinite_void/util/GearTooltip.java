@@ -101,7 +101,8 @@ public final class GearTooltip {
 
 	/**
 	 * A built-in enchantment printed exactly like a vanilla enchantment line: gray name plus the Roman level, and no
-	 * numeral for single-level enchantments such as Silk Touch.
+	 * numeral for single-level enchantments such as Silk Touch. These lines sit above the slot header and are not
+	 * indented, like vanilla enchantment tooltips.
 	 */
 	public static void enchantment(List<Component> tooltip, ResourceKey<Enchantment> enchantment, int level) {
 		MutableComponent name = enchantmentName(enchantment);
@@ -110,12 +111,12 @@ public final class GearTooltip {
 			name.append(" ").append(Component.translatable("enchantment.level." + level));
 		}
 
-		tooltip.add(indented(name, ChatFormatting.GRAY));
+		tooltip.add(name.copy().withStyle(ChatFormatting.GRAY));
 	}
 
 	/** Single-level enchantment (Silk Touch and friends): no level numeral, like vanilla. */
 	public static void singleLevelEnchantment(List<Component> tooltip, ResourceKey<Enchantment> enchantment) {
-		tooltip.add(indented(enchantmentName(enchantment), ChatFormatting.GRAY));
+		tooltip.add(enchantmentName(enchantment).withStyle(ChatFormatting.GRAY));
 	}
 
 	private static MutableComponent enchantmentName(ResourceKey<Enchantment> enchantment) {

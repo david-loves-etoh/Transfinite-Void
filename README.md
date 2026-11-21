@@ -82,16 +82,33 @@ them from the potion registry.
   arrow entries automatically.
 * **飞升 / Ascension** — for level `n`: `+n^2` max health, `+n%` attack damage, heals `n^2` every 15 s.
 
+## HUD bars (health / armour)
+
+Two client-side bars replace the vanilla rows once the values outgrow them; below the thresholds the vanilla hearts
+and armour icons are drawn untouched.
+
+| Bar | Shown when | Layout | Fill | Text |
+|---|---|---|---|---|
+| Health | max health > 40 (more than two rows of hearts) | vanilla health row: x = width/2 - 91, y = height - 39 | red `0xFFD32F2F` from the left, remainder black | `current/max` (rounded), white |
+| Armour | armour > 20 (more than one row of icons) | vanilla armour row: x = width/2 - 91, y = height - 49 | always completely filled, grey `0xFFB0B0B0` | armour value, white |
+
+Both bars are 81 px wide in total, so they line up exactly with the vanilla rows: a 9x9 vanilla HUD sprite
+(`hud/heart/full` / `hud/armor_full`, the very same sprites the vanilla HUD blits) as the left icon, a 2 px gap, then a
+70x9 bar with the value centred on it in the vanilla font (`Minecraft#font`).
+
+`GuiMixin` (client mixin, `transfinite_void.client.mixins.json`) cancels `Gui#renderHearts` / `Gui#renderArmor` only
+while its own threshold is exceeded and then draws the bar in the same place, so food, air and XP stay untouched.
+
 ## Tooltip format (all gear)
 
 Every tool, weapon and armour piece renders its block through `GearTooltip`, in this exact order:
 
 ```
+时运 III / 精准采集 / 效率 V / 耐久 V      (built-in enchantments, above the header, flush left)
 无法破坏                                  (only unbreakable items)
 在主手时： / 戴在头上时： / 穿在身上时： / 穿在腿上时： / 穿在脚上时：
- +N 护甲值  /  +N 盔甲韧性  /  +N 最大生命值  /  +N 魔法/真实伤害减免  /  +N 击退减免 …
+ +N 护甲值  /  +N 盔甲韧性  /  +N 最大生命值  /  +N 魔法/真实伤害减免  /  +N 击退抗性 …
  30 攻击伤害 / 4.8 攻击速度                (vanilla attribute "equals" lines, dark green)
- 时运 III / 精准采集 / 效率 V / 耐久 V      (built-in enchantments, vanilla enchantment format)
  连锁挖掘 … / 经验修补效率 x2 …             (ability lines, gray)
  水下呼吸 III / 急迫 III                   (continuous effects, level I prints without a numeral)
 ```
@@ -119,8 +136,10 @@ the only ones shown. `WornEffectsItem` / `HeldEffectsItem` hold the effect lists
   effects, enchantments, resistance and the invulnerability window). The stardust sword's "magic &amp; true defense"
   reduction is a `LivingEntity#hurt` mixin that subtracts the summed armour value from magic damage and true damage;
   a thread-local guard re-enters `hurt` once with the reduced amount.
-* 高维怀表's time stop is a `Entity#tick` mixin: `TimeStop` keeps the owner plus the previous `daylightCycle` gamerule
-  value and `EntityMixin` cancels the tick of every non-player entity on the server while it is active.
+* 高维怀表's time stop is a `ServerLevel#tickNonPassenger` / `tickPassenger` mixin: `TimeStop` keeps the owner plus
+  the previous `daylightCycle` gamerule value and `ServerLevelMixin` skips the level's entity tick entirely for every
+  non-player entity while it is active — freezing at `Entity#tick` is not enough, because `LivingEntity#tick` runs its
+  AI around `super.tick()` and every entity class overrides `tick()`.
 * Effect HUD icons live at `assets/transfinite_void/textures/mob_effect/ascension.png` and `bleeding.png` (18x18).
   1.21 resolves the sprite from the effect's registry key, and the vanilla `mob_effects` atlas is a directory source, so
   a plain PNG in the mod namespace is enough.

@@ -86,9 +86,9 @@ public class TitaniumAxeItem extends AxeItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+		GearTooltip.singleLevelEnchantment(tooltip, Enchantments.SILK_TOUCH);
 		GearTooltip.header(tooltip, "mainhand");
 		GearTooltip.baseStat(tooltip, Attributes.ATTACK_DAMAGE, GearTooltip.attackDamage(stack));
-		GearTooltip.singleLevelEnchantment(tooltip, Enchantments.SILK_TOUCH);
 		GearTooltip.ability(tooltip, "tooltip.transfinite_void.copper_keeps_wax");
 		GearTooltip.baseStat(tooltip, Attributes.ATTACK_SPEED, GearTooltip.attackSpeed(stack));
 		super.appendHoverText(stack, context, tooltip, flag);

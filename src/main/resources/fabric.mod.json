@@ -26,7 +26,11 @@
 		]
 	},
 	"mixins": [
-		"transfinite_void.mixins.json"
+		"transfinite_void.mixins.json",
+		{
+			"config": "transfinite_void.client.mixins.json",
+			"environment": "client"
+		}
 	],
 	"depends": {
 		"fabricloader": ">=0.19.5",
